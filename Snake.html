@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game Mobile</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #0a0a0a;
+    color: white;
+    font-family: Arial;
+    margin: 0;
+  }
+  canvas {
+    background: #1a1a1a;
+    border: 3px solid #00ff88;
+    border-radius: 10px;
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+  #score {
+    font-size: 22px;
+    margin: 10px;
+    font-weight: bold;
+    color: #00ff88;
+  }
+  .controls {
+    display: grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows: 60px 60px;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .btn {
+    background: #00ff88;
+    border: none;
+    border-radius: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+  .btn:active { background: #00cc66; }
+  #up { grid-column: 2; grid-row: 1; }
+  #left { grid-column: 1; grid-row: 2; }
+  #down { grid-column: 2; grid-row: 2; }
+  #right { grid-column: 3; grid-row: 2; }
+  #restart {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff3366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+<div id="score">Score: 0</div>
+<canvas id="game" width="400" height="400"></canvas>
+
+<div class="controls">
+  <button class="btn" id="up">↑</button>
+  <button class="btn" id="left">←</button>
+  <button class="btn" id="down">↓</button>
+  <button class="btn" id="right">→</button>
+</div>
+
+<button id="restart" onclick="restart()">Restart</button>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const box = 20;
+let snake
