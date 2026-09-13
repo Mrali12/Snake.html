@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+;;<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -128,5 +128,33 @@ function draw() {
 
   // Sirf khud se takraye to game over
   if(snake.some(s => s.x === head.x && s.y === head.y)) {
+    clearInterval(game);
+    alert('Game Over! Final Score: ' + score);
+    return;
+  }
+
+  snake.unshift(head);
+
+  if(head.x === food.x && head.y === food.y) {
+    score += 10;
+    document.getElementById('score').innerText = 'Score: ' + score;
+    food = {x: Math.floor(Math.random()*20), y: Math.floor(Math.random()*20)};
+  } else {
+    snake.pop();
+  }
+
+  ctx.fillStyle = '#00ff88';
+  snake.forEach((s,i) => ctx.fillRect(s.x*box, s.y*box, box-2, box-2));
+
+  ctx.fillStyle = 'red';
+  ctx.fillRect(food.x*box, food.y*box, box-2, box-2);
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
+
+  //
 
     
